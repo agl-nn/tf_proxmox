@@ -27,6 +27,7 @@ resource "proxmox_vm_qemu" "zookeeper" {
     bridge    = "vmbr0"
     firewall  = true
     link_down = false
+    macaddr   = each.value["macaddr"]
     model     = "virtio"
     queues    = 0
     rate      = 0
@@ -35,6 +36,6 @@ resource "proxmox_vm_qemu" "zookeeper" {
 }
 output "instance_ip_addr_for_zookeeper" {
     value = toset([
-    for ip in proxmox_vm_qemu.zookeeper : ip.ssh_host
+    for ip in proxmox_vm_qemu.zookeeper : [ip.name, ip.ssh_host]
   ])
 }

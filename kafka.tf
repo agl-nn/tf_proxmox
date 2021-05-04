@@ -27,6 +27,7 @@ resource "proxmox_vm_qemu" "kafka" {
     bridge    = "vmbr0"
     firewall  = true
     link_down = false
+    macaddr   = each.value["macaddr"]
     model     = "virtio"
     queues    = 0
     rate      = 0
@@ -35,6 +36,6 @@ resource "proxmox_vm_qemu" "kafka" {
 }
 output "instance_ip_addr_for_kafka" {
     value = toset([
-    for ip in proxmox_vm_qemu.kafka : ip.ssh_host
+    for ip in proxmox_vm_qemu.kafka : [ip.name, ip.ssh_host]
   ])
 }

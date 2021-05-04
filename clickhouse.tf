@@ -35,6 +35,6 @@ resource "proxmox_vm_qemu" "clickhouse" {
 }
 output "instance_ip_addr_for_clickhouse" {
     value = toset([
-    for ip in proxmox_vm_qemu.clickhouse : ip.ssh_host
+    for ip in proxmox_vm_qemu.clickhouse : [ip.name, ip.ssh_host]
   ])
 }

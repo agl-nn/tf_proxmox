@@ -19,7 +19,7 @@ variable "ipconfig0" {
   default = "ip=dhcp"
 }
 variable "clone" {
-  default = "centos7-template-cloud-init-no-lvm-20210428" 
+  default = "centos7-template-cloud-init-no-lvm-20210428"
 }
 variable "bootdisk" {
   default = "scsi0"

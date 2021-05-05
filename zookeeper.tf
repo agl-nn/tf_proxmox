@@ -27,7 +27,6 @@ resource "proxmox_vm_qemu" "zookeeper" {
     bridge    = "vmbr0"
     firewall  = true
     link_down = false
-    macaddr   = each.value["macaddr"]
     model     = "virtio"
     queues    = 0
     rate      = 0
